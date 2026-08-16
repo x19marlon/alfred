@@ -1,5 +1,5 @@
 # alfred
-TODO
+
 To run gazebo sim
 
     ros2 launch alfredr1 alfredr1 gz_launch_alfred.launch.py

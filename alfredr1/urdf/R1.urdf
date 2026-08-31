@@ -40,6 +40,7 @@
       </geometry>
     </collision>
   </link>
+
   <link name="left_hip_pitch_link">
     <inertial>
       <origin xyz="-0.003907 0.0415 -0.043716" rpy="0 0 0"/>
@@ -60,6 +61,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint name="left_hip_pitch_joint" type="revolute">
     <origin xyz="0.0325000000000034 0.0704672446672152 -0.0902350676234607" rpy="-0.436332312998619 0 0"/>
     <parent link="pelvis_link"/>
@@ -67,6 +69,7 @@
     <axis xyz="0 1 0"/>
     <limit lower="-2.932153143" upper="2.548180708" effort="60" velocity="18.8"/>
   </joint>
+  
   <link name="left_hip_roll_link">
     <inertial>
       <origin xyz="-0.008002 -0.00206 -0.032798" rpy="0 0 0"/>
@@ -87,6 +90,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint name="left_hip_roll_joint" type="revolute">
     <origin xyz="0.0248000000000053 0.0449999999999981 -0.0530000000000006" rpy="0.436332312998619 0 0"/>
     <parent link="left_hip_pitch_link"/>
@@ -1030,6 +1034,7 @@
     <axis xyz="1 0 0"/>
     <limit lower="-1.9199" upper="1.9199" effort="33" velocity="33.4"/>
   </joint>
+
   <link name="head_pitch_link">
     <inertial>
       <origin xyz="-0.00006956 -0.03077972 0.08058589" rpy="0 0 0"/>
@@ -1050,6 +1055,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint name="head_pitch_joint" type="revolute">
     <origin xyz="-0.006 0.03155 0.255" rpy="0 0 0"/>
     <parent link="waist_yaw_link"/>
@@ -1057,6 +1063,7 @@
     <axis xyz="0 1 0"/>
     <limit lower="-0.62832" upper="0.62832" effort="33" velocity="33.4"/>
   </joint>
+
   <link name="head_yaw_link">
     <inertial>
       <origin xyz="0.02211657 -0.00004725 0.00199411" rpy="0 0 0"/>
@@ -1077,6 +1084,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint name="head_yaw_joint" type="revolute">
     <origin xyz="0.0010126 -0.03155 0.1165" rpy="0 0 0"/>
     <parent link="head_pitch_link"/>

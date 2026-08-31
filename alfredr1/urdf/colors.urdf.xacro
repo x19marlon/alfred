@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot name="colors" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- ==================== COLORES BÁSICOS ==================== -->
+    <xacro:macro name="colors" params="">
+
+        <!-- Rojo -->
+        <material name="red">
+            <color rgba="1.0 0.0 0.0 1.0"/>
+        </material>
+        <!-- Verde -->
+        <material name="green">
+            <color rgba="0.0 1.0 0.0 1.0"/>
+        </material>
+        <!-- Azul -->
+        <material name="blue">
+            <color rgba="0.0 0.0 1.0 1.0"/>
+        </material>
+        <!-- Amarillo -->
+        <material name="yellow">
+            <color rgba="1.0 1.0 0.0 1.0"/>
+        </material>
+        <!-- Naranja -->
+        <material name="orange">
+            <color rgba="1.0 0.5 0.0 1.0"/>
+        </material>
+        <!-- Morado -->
+        <material name="purple">
+            <color rgba="0.5 0.0 0.5 1.0"/>
+        </material>
+        <!-- Rosa -->
+        <material name="pink">
+            <color rgba="1.0 0.0 0.5 1.0"/>
+        </material>
+        <!-- Cian -->
+        <material name="cyan">
+            <color rgba="0.0 1.0 1.0 1.0"/>
+        </material>
+        <!-- ==================== ESCALA DE GRISES ==================== -->
+
+        <!-- Negro -->
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+        <!-- Gris oscuro -->
+        <material name="dark_grey">
+            <color rgba="0.25 0.25 0.25 1.0"/>
+        </material>
+        <!-- Gris -->
+        <material name="grey">
+            <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+        <!-- Gris claro -->
+        <material name="light_grey">
+            <color rgba="0.75 0.75 0.75 1.0"/>
+        </material>
+        <!-- Blanco -->
+        <material name="white">
+            <color rgba="1.0 1.0 1.0 1.0"/>
+        </material>
+        <!-- ==================== COLORES METÁLICOS ==================== -->
+
+        <!-- Plata -->
+        <material name="silver">
+            <color rgba="0.75 0.75 0.75 1.0"/>
+        </material>
+        <!-- Gris metálico oscuro -->
+        <material name="metal_dark">
+            <color rgba="0.35 0.37 0.40 1.0"/>
+        </material>
+        <!-- Cobre -->
+        <material name="copper">
+            <color rgba="0.72 0.45 0.20 1.0"/>
+        </material>
+        <!-- Dorado -->
+        <material name="gold">
+            <color rgba="1.0 0.84 0.0 1.0"/>
+        </material>
+        <!-- ==================== OTROS COLORES ÚTILES ==================== -->
+
+        <!-- Marrón -->
+        <material name="brown">
+            <color rgba="0.55 0.27 0.07 1.0"/>
+        </material>
+        <!-- Azul oscuro -->
+        <material name="dark_blue">
+            <color rgba="0.0 0.0 0.5 1.0"/>
+        </material>
+        <!-- Verde oscuro -->
+        <material name="dark_green">
+            <color rgba="0.0 0.4 0.0 1.0"/>
+        </material>
+        <!-- Rojo oscuro -->
+        <material name="dark_red">
+            <color rgba="0.5 0.0 0.0 1.0"/>
+        </material>
+        <!-- Beige -->
+        <material name="beige">
+            <color rgba="0.76 0.70 0.50 1.0"/>
+        </material>
+        
+    </xacro:macro>
+</robot>

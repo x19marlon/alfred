@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot name="r1_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- ========= Xacro Import =========-->
+    <xacro:include filename="$(find alfredr1)/urdf/colors.urdf.xacro" />
+    <xacro:include filename="$(find alfredr1)/urdf/body_r1.urdf.xacro" />
+    <xacro:include filename="$(find alfredr1)/urdf/head_r1.urdf.xacro" />
+    <xacro:colors/>
+
+    <!-- ========= Xacro include nuguet =========-->
+    <xacro:body_r1 joint1="waist_yaw_joint"/>
+    <xacro:head_r1 joint1="head_yaw_joint"/>
+    
+    
+    <link name="pelvis_link">
+        <inertial>
+            <origin xyz="0.026921 0.000184 -0.070405" rpy="0 0 0"/>
+            <mass value="2.24682"/>
+            <inertia ixx="0.006461" ixy="5e-06" ixz="3.7e-05" iyy="0.00381" iyz="-1.2e-05" izz="0.006198"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://alfredr1/urdf/meshes/pelvis_link.STL"/>
+            </geometry>
+            <material name="light_grey"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://alfredr1/urdf/meshes/pelvis_link.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- ========= joints =========-->
+     <joint name="waist_roll_joint" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="pelvis_link"/>
+        <child link="waist_roll_link"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.5236" upper="0.5236" effort="60" velocity="18.8"/>
+    </joint>
+
+    <joint name="head_pitch_joint" type="revolute">
+        <origin xyz="-0.006 0.03155 0.255" rpy="0 0 0"/>
+        <parent link="waist_yaw_link"/>
+        <child link="head_pitch_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.62832" upper="0.62832" effort="33" velocity="33.4"/>
+    </joint>
+
+    
+
+
+    
+</robot>

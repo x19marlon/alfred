@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot name="body_r1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- =========== Xacro ===========-->
+  <xacro:macro name="body_r1" params="joint1">
+
+    <!-- =========== links ===========-->
+    <link name="waist_roll_link">
+      <inertial>
+        <origin xyz="0.030601 0 0.004788" rpy="0 0 0"/>
+        <mass value="0.920736"/>
+        <inertia ixx="0.000806" ixy="0" ixz="1e-06" iyy="0.000734" iyz="0" izz="0.000678"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0325 0 0.049" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://alfredr1/urdf/meshes/waist_roll_link.STL"/>
+        </geometry>
+        <material name="light_grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0325 0 0.049" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://alfredr1/urdf/meshes/waist_roll_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="waist_yaw_link">
+      <inertial>
+        <origin xyz="-0.000648 -0.000052 0.144497" rpy="0 0 0"/>
+        <mass value="6.024198"/>
+        <inertia ixx="0.060949" ixy="-0.000060" ixz="0.001044" iyy="0.050645" iyz="-0.000164" izz="0.024602"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://alfredr1/urdf/meshes/waist_yaw_link.STL"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://alfredr1/urdf/meshes/waist_yaw_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- =========== joints ===========-->
+    <joint name="${joint1}" type="revolute">
+      <origin xyz="0.0325 0 0.049" rpy="0 0 0"/>
+      <parent link="waist_roll_link"/>
+      <child link="waist_yaw_link"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.618" upper="2.618" effort="60" velocity="18.8"/>
+    </joint>
+
+  </xacro:macro>
+
+  
+</robot>

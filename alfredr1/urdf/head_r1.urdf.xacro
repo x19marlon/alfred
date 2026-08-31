@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="head_r1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- =========== Xacro ===========-->
+    <xacro:macro name="head_r1" params="joint1">
+
+        <!-- =========== links ===========-->
+        <link name="head_pitch_link" params="joint1">
+            <inertial>
+                <origin xyz="-0.00006956 -0.03077972 0.08058589" rpy="0 0 0"/>
+                <mass value="0.50391253"/>
+                <inertia ixx="0.00095995" ixy="-0.00000045" ixz="0.00000624" iyy="0.00091344" iyz="0.00000588" izz="0.00045356"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/head_pitch_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/head_pitch_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="head_yaw_link">
+            <inertial>
+                <origin xyz="0.02211657 -0.00004725 0.00199411" rpy="0 0 0"/>
+                <mass value="0.71432240"/>
+                <inertia ixx="0.00168182" ixy="0.0000001" ixz="0.00029553" iyy="0.00202452" iyz="0.0000001" izz="0.00181448"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/head_yaw_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/head_yaw_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- =========== joints ===========-->
+        <joint name="${joint1}" type="revolute">
+                <origin xyz="0.0010126 -0.03155 0.1165" rpy="0 0 0"/>
+                <parent link="head_pitch_link"/>
+                <child link="head_yaw_link"/>
+                <axis xyz="0 0 1"/>
+                <limit lower="-2.0071" upper="2.0071" effort="33" velocity="33.4"/>
+        </joint>
+    </xacro:macro>
+
+</robot>

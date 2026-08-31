@@ -21,7 +21,7 @@
       <collision>
         <origin xyz="0.0325 0 0.049" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://alfredr1/urdf/meshes/waist_roll_link.STL"/>
+            <box size="0.061842 0.080477 0.078131" />
         </geometry>
       </collision>
     </link>
@@ -40,9 +40,9 @@
         <material name="white"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0.123721" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://alfredr1/urdf/meshes/waist_yaw_link.STL"/>
+          <box size="0.127992 0.138076 0.245606" />
         </geometry>
       </collision>
     </link>

@@ -26,9 +26,9 @@
             <material name="light_grey"/>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0.024748 0 -0.067283" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://alfredr1/urdf/meshes/pelvis_link.STL"/>
+                <box size="0.104 0.104 0.1" />
             </geometry>
         </collision>
     </link>

@@ -19,9 +19,9 @@
                 <material name="white"/>
             </visual>
             <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0 -0.031688 0.051001" rpy="0 0 0"/>
                 <geometry>
-                    <mesh filename="package://alfredr1/urdf/meshes/head_pitch_link.STL"/>
+                   <box size="0.061441 0.061441 0.157445" />
                 </geometry>
             </collision>
         </link>
@@ -40,9 +40,9 @@
                 <material name="white"/>
             </visual>
             <collision>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0.019307 0 -0.012286" rpy="0 2.891 0"/>
                 <geometry>
-                    <mesh filename="package://alfredr1/urdf/meshes/head_yaw_link.STL"/>
+                    <box size="0.082445 0.087838 0.144796" />
                 </geometry>
             </collision>
         </link>

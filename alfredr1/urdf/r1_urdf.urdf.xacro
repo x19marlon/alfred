@@ -5,13 +5,25 @@
     <xacro:include filename="$(find alfredr1)/urdf/colors.urdf.xacro" />
     <xacro:include filename="$(find alfredr1)/urdf/body_r1.urdf.xacro" />
     <xacro:include filename="$(find alfredr1)/urdf/head_r1.urdf.xacro" />
+    <xacro:include filename="$(find alfredr1)/urdf/arms_r1.urdf.xacro"/>
     <xacro:colors/>
 
     <!-- ========= Xacro include nuguet =========-->
     <xacro:body_r1 joint1="waist_yaw_joint"/>
     <xacro:head_r1 joint1="head_yaw_joint"/>
+    <xacro:arm prefix="left" reflect="1"
+               joint1="left_shoulder_roll_joint"
+               joint2="left_shoulder_yaw_joint"
+               joint3="left_elbow_joint"
+               joint4="left_wrist_roll_joint"/>
+    <xacro:arm prefix="right" reflect="-1"
+               joint1="right_shoulder_roll_joint"
+               joint2="right_shoulder_yaw_joint"
+               joint3="right_elbow_joint"
+               joint4="right_wrist_roll_joint"/>
     
     
+    <!-- ========= base link =========-->
     <link name="pelvis_link">
         <inertial>
             <origin xyz="0.026921 0.000184 -0.070405" rpy="0 0 0"/>
@@ -49,6 +61,22 @@
         <child link="head_pitch_link"/>
         <axis xyz="0 1 0"/>
         <limit lower="-0.62832" upper="0.62832" effort="33" velocity="33.4"/>
+    </joint>
+
+    <joint name="left_shoulder_pitch_joint" type="revolute">
+        <origin xyz="0 0.085688 0.19749" rpy="0.26187 0 0"/>
+        <parent link="waist_yaw_link"/>
+        <child link="left_shoulder_pitch_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.1416" upper="2.0944" effort="60" velocity="18.8"/>
+    </joint>
+
+    <joint name="right_shoulder_pitch_joint" type="revolute">
+        <origin xyz="0 -0.085688 0.19749" rpy="-0.26187 0 0"/>
+        <parent link="waist_yaw_link"/>
+        <child link="right_shoulder_pitch_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.1416" upper="2.0944" effort="60" velocity="18.8"/>
     </joint>
 
     

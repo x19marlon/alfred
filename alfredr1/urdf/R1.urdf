@@ -899,6 +899,7 @@
     <axis xyz="1 0 0"/>
     <limit lower="-1.9199" upper="1.9199" effort="33" velocity="33.4"/>
   </joint>
+
   <link name="right_shoulder_pitch_link">
     <inertial>
       <origin xyz="0.00294386 -0.04476868 -0.02286868" rpy="0 0 0"/>
@@ -919,6 +920,7 @@
       </geometry>
     </collision>
   </link>
+
   <joint name="right_shoulder_pitch_joint" type="revolute">
     <origin xyz="0 -0.085688 0.19749" rpy="-0.26187 0 0"/>
     <parent link="waist_yaw_link"/>
@@ -926,6 +928,7 @@
     <axis xyz="0 1 0"/>
     <limit lower="-3.1416" upper="2.0944" effort="60" velocity="18.8"/>
   </joint>
+  
   <link name="right_shoulder_roll_link">
     <inertial>
       <origin xyz="-0.037828 -0.003967 -0.066496" rpy="0 0 0"/>

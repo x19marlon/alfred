@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="arms_r1" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <!-- ========= Xacro macro =========-->
     <xacro:macro name="arm" params="prefix reflect joint1 joint2 joint3 joint4">
 
         <!-- =========== shoulder ===========-->

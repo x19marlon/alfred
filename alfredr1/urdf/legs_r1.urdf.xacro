@@ -1,9 +1,349 @@
 <?xml version="1.0"?>
 <robot name="legs" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  
-    <xacro:macro name="leg" params="">
+    <!-- ========= Xacro macro =========-->
+    <xacro:macro name="leg" params="prefix reflect joint1 joint2 joint3 joint4 joint5">
 
-      
+         <!-- ========= hip =========-->
+        <link name="${prefix}_hip_pitch_link">
+            <inertial>
+                <origin xyz="-0.003907 0.0415 -0.043716" rpy="0 0 0"/>
+                <mass value="0.935482"/>
+                <inertia ixx="0.001046" ixy="2.2e-05" ixz="-3.1e-05" iyy="0.000943" iyz="0.000145" izz="0.000624"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_hip_pitch_link.STL"/>
+                </geometry>
+                <material name="light_grey"/>
+            </visual>
+            <collision>
+                <origin xyz="-0.002767 ${reflect * 0.039728} -0.033793" rpy="${reflect * 0.383536} 0 0"/>
+                <geometry>
+                    <box size="0.052421 0.052421 0.115973" />
+                </geometry>
+                    
+            </collision>
+        </link>
+
+        <link name="${prefix}_hip_roll_link">
+            <inertial>
+                <origin xyz="-0.008002 -0.00206 -0.032798" rpy="0 0 0"/>
+                <mass value="0.207609"/>
+                <inertia ixx="0.000246" ixy="-1.3e-05" ixz="-5.6e-05" iyy="0.000231" iyz="-1e-05" izz="0.000239"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_hip_roll_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin xyz="-0.019619 ${reflect * 0} -0.018738" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.08544 0.08544 0.08544" />
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${joint1}" type="revolute">
+            <origin xyz="0.0248000000000053 ${reflect *0.0449999999999981} -0.0530000000000006" rpy="${reflect * 0.436332312998619} 0 0"/>
+            <parent link="${prefix}_hip_pitch_link"/>
+            <child link="${prefix}_hip_roll_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="-1.047197551" upper="1.745329252" effort="60" velocity="18.8"/>
+        </joint>
+        
+        <link name="${prefix}_hip_yaw_link">
+            <inertial>
+                <origin xyz="-0.010059 -0.004848 -0.093609" rpy="0 0 0"/>
+                <mass value="1.73967"/>
+                <inertia ixx="0.008099" ixy="-0.000112" ixz="-0.001134" iyy="0.008338" iyz="-0.00058" izz="0.001513"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_hip_yaw_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin xyz="-0.003924 ${reflect * -0.004324} -0.098735" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.088497 0.072674 0.196289" />
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${joint2}" type="revolute">
+            <origin xyz="-0.0194507071014726 ${reflect * -0.000599999999990775 } -0.0617999999999937" rpy="0 0 0"/>
+            <parent link="${prefix}_hip_roll_link"/>
+            <child link="${prefix}_hip_yaw_link"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="-2.7402" upper="2.7402" effort="60" velocity="18.8"/>
+        </joint>
+        
+         <!-- ========= knee =========-->
+        <link name="${prefix}_knee_link">
+            <inertial>
+                <origin xyz="-0.010632 -0.018101 -0.135947" rpy="0 0 0"/>
+                <mass value="2.26585"/>
+                <inertia ixx="0.01237" ixy="-4.4e-05" ixz="-0.000238" iyy="0.012604" iyz="-0.000603" izz="0.001907"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_knee_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin xyz="-0.001799 ${reflect * 0} -0.140034" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.087058 0.064198 0.357832" />
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${joint3}" type="revolute">
+            <origin xyz="-0.0231499999999827 ${reflect * 0.0186600000000101} -0.159300730044995" rpy="0 0 0"/>
+            <parent link="${prefix}_hip_yaw_link"/>
+            <child link="${prefix}_knee_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-0.174532925" upper="2.42600766" effort="60" velocity="18.8"/>
+        </joint>
+        
+         <!-- ========= ancle =========-->
+        <link name="${prefix}_ankle_A_link">
+            <inertial>
+                <origin xyz="0.002876 0.004712 -0.001192" rpy="0 0 0"/>
+                <mass value="0.047549"/>
+                <inertia ixx="1.4e-05" ixy="0" ixz="0" iyy="6e-06" iyz="1e-06" izz="9e-06"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_A_link.STL"/>
+                </geometry>
+                <material name="A">
+                    <color rgba="1 0 0 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 ${reflect * 0} 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_A_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${prefix}_ankle_A_joint" type="fixed">
+            <origin xyz="0.0137908367226444 ${reflect * -0.020581073000019} -0.0965262033774272" rpy="0 0.0893608577021168 0"/>
+            <parent link="${prefix}_knee_link"/>
+            <child link="${prefix}_ankle_A_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="-0.89675" upper="1.4099" effort="33" velocity="33.4"/>
+        </joint>
+        
+        <link name="${prefix}_ankle_A_rod_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.006909"/>
+                <inertia ixx="1e-11" ixy="0" ixz="0" iyy="1e-11" iyz="0" izz="1e-11"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_A_rod_link.STL"/>
+                </geometry>
+                <material name="A">
+                    <color rgba="1 0 0 1"/>
+                </material>
+            </visual>
+        </link>
+        
+        <joint name="${prefix}_ankle_A_rod_joint" type="fixed">
+            <origin xyz="0.0129999999999986  ${reflect * 0.0159961931559284} -0.00404620865977823" rpy="0 0 0"/>
+            <parent link="${prefix}_ankle_A_link"/>
+            <child link="${prefix}_ankle_A_rod_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="0" upper="0" effort="0" velocity="0"/>
+        </joint>
+        
+        <link name="${prefix}_ankle_B_link">
+            <inertial>
+                <origin xyz="0.002876 -0.004711 -0.001195" rpy="0 0 0"/>
+                <mass value="0.047549"/>
+                <inertia ixx="1.4e-05" ixy="0" ixz="0" iyy="6e-06" iyz="-1e-06" izz=" 9e-06"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_B_link.STL"/>
+                </geometry>
+                <material name="B">
+                    <color rgba="0 0 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 ${reflect * 0} 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_B_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${prefix}_ankle_B_joint" type="fixed">
+            <origin xyz="0.0078562453629065 ${reflect * -0.0205810730000191} -0.162760866676519" rpy="0 0.0893608577021174 0"/>
+            <parent link="${prefix}_knee_link"/>
+            <child link="${prefix}_ankle_B_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="-1.3999" upper="0.92328" effort="33" velocity="33.4"/>
+        </joint>
+        
+        <link name="${prefix}_ankle_B_rod_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.006909"/>
+                <inertia ixx="1e-11" ixy="0" ixz="0" iyy="1e-11" iyz="0" izz="1e-11"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_B_rod_link.STL"/>
+                </geometry>
+                <material name="B">
+                    <color rgba="0 0 1 1"/>
+                </material>
+            </visual>
+        </link>
+        
+        <joint name="${prefix}_ankle_B_rod_joint" type="fixed">
+            <origin xyz="0.0129999999999971 ${reflect * -0.0159932565774738} -0.00405780039512127" rpy="0 0 0"/>
+            <parent link="${prefix}_ankle_B_link"/>
+            <child link="${prefix}_ankle_B_rod_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="0" upper="0" effort="0" velocity="0"/>
+        </joint>
+        
+        <!--========== ancle joints ==========-->
+        <link name="${prefix}_ankle_pitch_link">
+            <inertial>
+                <origin xyz="-0.000104 0 -0.00772" rpy="0 0 0"/>
+                <mass value="0.071231"/>
+                <inertia ixx="7e-06" ixy="0" ixz="0" iyy="1.2e-05" iyz="0" izz="7e-06"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_pitch_link.STL"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+        </link>
+        
+        <joint name="${joint4}" type="revolute">
+            <origin xyz="-0.0168138890944356 ${reflect * -0.0205810730000241} -0.309174756016388" rpy="0 0 0"/>
+            <parent link="${prefix}_knee_link"/>
+            <child link="${prefix}_ankle_pitch_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-0.87266" upper="0.57596" effort="50" velocity="30"/>
+        </joint>
+        
+        <link name="${prefix}_ankle_roll_link">
+            <inertial>
+                <origin xyz="0.029823 0 -0.033123" rpy="0 0 0"/>
+                <mass value="0.473048"/>
+                <inertia ixx="0.000232" ixy="0" ixz="8.9e-05" iyy="0.001207" iyz="0" izz="0.001259"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_roll_link.STL"/>
+                </geometry>
+                <material name="dark"/>
+            </visual>
+            <collision>
+                <origin xyz="0.039531 ${reflect * 0} -0.029282" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.189681 0.071285 0.044215"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${joint5}" type="revolute">
+            <origin xyz="0 ${reflect * 0} 0" rpy="0 0 0"/>
+            <parent link="${prefix}_ankle_pitch_link"/>
+            <child link="${prefix}_ankle_roll_link"/>
+            <axis xyz="1 0 0"/>
+            <limit lower="-0.2618" upper="0.2618" effort="50" velocity="30"/>
+        </joint>
+        
+        <!--========== anckle constraint ==========-->
+        <link name="${prefix}_ankle_constraint_A_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.00432"/>
+                <inertia ixx="1e-11" ixy="0" ixz="0" iyy="1e-11" iyz="0" izz="1e-11"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_constraint_A_link.STL"/>
+                </geometry>
+                <material name="A">
+                    <color rgba="1 0 0 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 ${reflect * 0} 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_constraint_A_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${prefix}_ankle_constraint_A_joint" type="fixed">
+            <origin xyz="0.021 ${reflect * 0.014} -0.0094" rpy="0 0 0"/>
+            <parent link="${prefix}_ankle_roll_link"/>
+            <child link="${prefix}_ankle_constraint_A_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="0" upper="0" effort="0" velocity="0"/>
+        </joint>
+        
+        <link name="${prefix}_ankle_constraint_B_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.00432"/>
+                <inertia ixx="1e-11" ixy="0" ixz="0" iyy="1e-11" iyz="0" izz="1e-11"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_constraint_B_link.STL"/>
+                </geometry>
+                <material name="B">
+                    <color rgba="0 0 1 1"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 ${reflect * 0} 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://alfredr1/urdf/meshes/${prefix}_ankle_constraint_B_link.STL"/>
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${prefix}_ankle_constraint_B_joint" type="fixed">
+            <origin xyz="0.021 ${reflect * -0.014} -0.0094" rpy="0 0 0"/>
+            <parent link="${prefix}_ankle_roll_link"/>
+            <child link="${prefix}_ankle_constraint_B_link"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="0" upper="0" effort="0" velocity="0"/>
+        </joint>
+
     </xacro:macro>
+
 </robot>

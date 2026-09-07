@@ -6,6 +6,7 @@
     <xacro:include filename="$(find alfredr1)/urdf/body_r1.urdf.xacro" />
     <xacro:include filename="$(find alfredr1)/urdf/head_r1.urdf.xacro" />
     <xacro:include filename="$(find alfredr1)/urdf/arms_r1.urdf.xacro"/>
+    <xacro:include filename="$(find alfredr1)/urdf/legs_r1.urdf.xacro" />
     <xacro:colors/>
 
     <!-- ========= Xacro include nuguet =========-->
@@ -21,7 +22,18 @@
                joint2="right_shoulder_yaw_joint"
                joint3="right_elbow_joint"
                joint4="right_wrist_roll_joint"/>
-    
+    <xacro:leg prefix="left"  reflect="1" 
+               joint1="left_hip_roll_joint"
+               joint2="left_hip_yaw_joint"
+               joint3="left_knee_joint"
+               joint4="left_ankle_pitch_joint"
+               joint5="left_ankle_roll_joint"/>
+    <xacro:leg prefix="right"  reflect="-1" 
+               joint1="right_hip_roll_joint"
+               joint2="right_hip_yaw_joint"
+               joint3="right_knee_joint"
+               joint4="right_ankle_pitch_joint"
+               joint5="right_ankle_roll_joint"/>
     
     <!-- ========= base link =========-->
     <link name="pelvis_link">
@@ -79,7 +91,21 @@
         <limit lower="-3.1416" upper="2.0944" effort="60" velocity="18.8"/>
     </joint>
 
-    
+    <joint name="left_hip_pitch_joint" type="revolute">
+        <origin xyz="0.0325000000000034 0.0704672446672152 -0.0902350676234607" rpy="-0.436332312998619 0 0"/>
+        <parent link="pelvis_link"/>
+        <child link="left_hip_pitch_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-2.932153143" upper="2.548180708" effort="60" velocity="18.8"/>
+    </joint>
+
+    <joint name="right_hip_pitch_joint" type="revolute">
+        <origin xyz="0.0325000000000034 -0.0704672446672152 -0.0902350676234607" rpy="0.436332312998619 0 0"/>
+        <parent link="pelvis_link"/>
+        <child link="right_hip_pitch_link"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-2.932153143" upper="2.548180708" effort="60" velocity="18.8"/>
+    </joint>
 
 
     
